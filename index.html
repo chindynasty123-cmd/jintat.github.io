@@ -3,38 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jintat Industrial | Precision CNC Machining Partner</title>
-  <meta name="description" content="Precision CNC machining partner for complex & low-volume parts. Reliable delivery, engineering communication, and one-stop manufacturing coordination in Taiwan." />
+  <title>Jintat Industrial | One-Stop Precision Machining System Integrator</title>
+  <meta name="description" content="Jintat Industrial — One-Stop precision machining system integrator in Taiwan. CNC turning/milling, inspection reports, ISO 9001, CMM Mitutoyo & Keyence measurement support. Prototype to low-volume production." />
 
   <style>
     :root{
-      --bg:#0b1220;
-      --card:#0f1a33;
-      --text:#eaf0ff;
-      --muted:#b9c3df;
+      /* Brand (logo blue) */
+      --brand:#1f66c2;
+      --brand2:#4aa3ff;
+      --bg:#061225;
+      --card:#0b1f3f;
+      --text:#eef5ff;
+      --muted:#b8c7e6;
       --line:rgba(255,255,255,.12);
-      --accent:#6ea8ff;
-      --accent2:#7cf0d4;
-      --shadow: 0 12px 40px rgba(0,0,0,.35);
+      --shadow: 0 14px 46px rgba(0,0,0,.35);
       --radius:16px;
+      --radius2:20px;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background: radial-gradient(1200px 800px at 10% 10%, rgba(110,168,255,.25), transparent 55%),
-                  radial-gradient(900px 700px at 85% 20%, rgba(124,240,212,.16), transparent 55%),
-                  var(--bg);
       color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 12% 10%, rgba(31,102,194,.30), transparent 55%),
+        radial-gradient(900px 700px at 85% 18%, rgba(74,163,255,.22), transparent 55%),
+        var(--bg);
       line-height:1.6;
     }
     a{color:inherit; text-decoration:none}
-    .wrap{max-width:1080px; margin:0 auto; padding:0 20px}
+    .wrap{max-width:1120px; margin:0 auto; padding:0 20px}
     .topbar{
       position:sticky; top:0; z-index:50;
       backdrop-filter: blur(10px);
-      background: rgba(11,18,32,.72);
+      background: rgba(6,18,37,.74);
       border-bottom:1px solid var(--line);
     }
     .nav{
@@ -43,178 +46,285 @@
       gap:16px;
     }
     .brand{
-      display:flex; align-items:center; gap:10px; font-weight:700;
-      letter-spacing:.2px;
+      display:flex; align-items:center; gap:12px;
+      min-width: 240px;
     }
-    .logo{
-      width:34px; height:34px; border-radius:10px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
+    .logo-box{
+      width:52px; height:52px; border-radius:14px;
+      background: rgba(255,255,255,.92);
+      display:flex; align-items:center; justify-content:center;
       box-shadow: var(--shadow);
+      border:1px solid rgba(0,0,0,.06);
+      overflow:hidden;
+      flex:0 0 auto;
+    }
+    .logo-box img{
+      width:100%; height:100%;
+      object-fit:contain;
+      padding:6px;
+    }
+    .brand-name{
+      font-weight:800; letter-spacing:.2px;
+      line-height:1.1;
+    }
+    .brand-sub{
+      font-weight:650;
+      color:var(--muted);
+      font-size:12px;
+      margin-top:4px;
     }
     .navlinks{
-      display:flex; gap:18px; flex-wrap:wrap;
-      font-weight:600; color:var(--muted); font-size:14px;
+      display:flex; gap:14px; flex-wrap:wrap;
+      font-weight:700; color:var(--muted); font-size:14px;
+      justify-content:center;
     }
-    .navlinks a{padding:8px 10px; border-radius:10px}
-    .navlinks a:hover{background: rgba(255,255,255,.06); color:var(--text)}
+    .navlinks a{
+      padding:8px 10px; border-radius:12px;
+    }
+    .navlinks a:hover{
+      background: rgba(255,255,255,.06);
+      color:var(--text);
+    }
     .cta{
       display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+      justify-content:flex-end;
+      min-width: 220px;
     }
     .btn{
       display:inline-flex; align-items:center; justify-content:center;
-      padding:10px 14px; border-radius:12px; font-weight:700;
+      padding:10px 14px; border-radius:12px;
+      font-weight:800;
       border:1px solid var(--line);
       background: rgba(255,255,255,.06);
       color:var(--text);
       font-size:14px;
+      white-space:nowrap;
     }
     .btn:hover{background: rgba(255,255,255,.10)}
     .btn.primary{
       border:none;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color:#07101f;
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      color:#051022;
     }
-    .hero{
-      padding:56px 0 20px;
-    }
-    .hero-grid{
-      display:grid; gap:20px;
-      grid-template-columns: 1.25fr .75fr;
-    }
-    @media (max-width: 900px){
-      .hero-grid{grid-template-columns:1fr}
-    }
+
+    /* Layout cards */
     .card{
-      background: rgba(15,26,51,.72);
+      background: rgba(11,31,63,.72);
       border:1px solid var(--line);
-      border-radius: var(--radius);
+      border-radius: var(--radius2);
       box-shadow: var(--shadow);
       padding:22px;
     }
-    h1{
+    .mini-title{
       margin:0 0 10px;
+      font-size:13px;
+      color:var(--muted);
+      font-weight:900;
+      letter-spacing:.24px;
+      text-transform:uppercase;
+    }
+    h1{
+      margin:0 0 12px;
       font-size:40px;
-      line-height:1.15;
+      line-height:1.12;
       letter-spacing:-.4px;
     }
-    @media (max-width: 520px){
-      h1{font-size:32px}
+    @media (max-width: 560px){ h1{font-size:32px} }
+    h2{margin:0 0 10px; font-size:22px}
+    p{margin:0 0 12px}
+    .lead{color:var(--muted); font-size:16px; margin:0 0 16px; max-width: 75ch}
+
+    .hero{padding:56px 0 18px}
+    .hero-grid{
+      display:grid; gap:16px;
+      grid-template-columns: 1.25fr .75fr;
+      align-items:stretch;
     }
-    .lead{
-      color:var(--muted);
-      font-size:16px;
-      margin:0 0 18px;
-      max-width: 70ch;
-    }
-    .badges{
-      display:flex; flex-wrap:wrap; gap:10px;
-      margin-top: 14px;
-    }
+    @media (max-width: 980px){ .hero-grid{grid-template-columns:1fr} }
+
+    .badges{display:flex; flex-wrap:wrap; gap:10px; margin-top: 12px}
     .badge{
       display:inline-flex; align-items:center; gap:8px;
-      padding:8px 10px;
-      border-radius:999px;
+      padding:8px 10px; border-radius:999px;
       border:1px solid var(--line);
       background: rgba(255,255,255,.05);
       color:var(--muted);
-      font-weight:600;
+      font-weight:800;
       font-size:13px;
     }
     .dot{
       width:8px; height:8px; border-radius:999px;
-      background: var(--accent2);
-      box-shadow: 0 0 0 4px rgba(124,240,212,.12);
+      background: var(--brand2);
+      box-shadow: 0 0 0 4px rgba(74,163,255,.14);
     }
-    .mini-title{
-      margin:0 0 10px;
-      font-size:14px;
-      color:var(--muted);
-      font-weight:700;
-      letter-spacing:.25px;
-      text-transform:uppercase;
-    }
-    .list{
-      margin:0; padding-left:18px; color:var(--muted);
-    }
-    .kpis{
-      display:grid; grid-template-columns:1fr 1fr; gap:12px;
-      margin-top: 12px;
-    }
+
+    .grid3{display:grid; gap:12px; grid-template-columns: repeat(3, 1fr)}
+    @media (max-width: 980px){ .grid3{grid-template-columns:1fr} }
+
     .kpi{
       border:1px solid var(--line);
       background: rgba(255,255,255,.04);
-      border-radius: 14px;
+      border-radius: 16px;
       padding:12px;
     }
-    .kpi strong{display:block; font-size:16px; color:var(--text)}
+    .kpi strong{display:block; font-size:16px; color:var(--text); font-weight:900}
     .kpi span{color:var(--muted); font-size:13px}
-    section{padding:26px 0}
-    .grid3{
-      display:grid; gap:14px;
-      grid-template-columns: repeat(3, 1fr);
-    }
-    @media (max-width: 900px){
-      .grid3{grid-template-columns:1fr}
-    }
-    h2{margin:0 0 10px; font-size:22px}
-    p{margin:0 0 12px}
-    .muted{color:var(--muted)}
+
+    section{padding:22px 0}
+    .divider{height:1px; background: var(--line); margin: 18px 0}
     .pill{
       display:inline-flex; align-items:center; gap:8px;
-      padding:8px 10px;
-      border-radius:999px;
+      padding:8px 10px; border-radius:999px;
       border:1px solid var(--line);
       background: rgba(255,255,255,.04);
-      font-weight:700;
+      font-weight:900;
       color:var(--text);
       font-size:13px;
     }
-    .divider{
-      height:1px; background: var(--line);
-      margin: 18px 0;
+
+    /* Gallery */
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:10px;
+      margin-top: 12px;
     }
-    .contact-box{
+    .shot{
+      position:relative;
+      border-radius: 16px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      cursor:pointer;
+      min-height: 160px;
+    }
+    .shot img{
+      width:100%; height:100%;
+      object-fit:cover;
+      display:block;
+      transform: scale(1.02);
+      transition: transform .25s ease;
+      filter: contrast(1.03) saturate(1.02);
+    }
+    .shot:hover img{ transform: scale(1.06); }
+    .shot .cap{
+      position:absolute;
+      left:10px; right:10px; bottom:10px;
+      background: rgba(6,18,37,.72);
+      border:1px solid rgba(255,255,255,.14);
+      color: var(--text);
+      font-weight:900;
+      font-size:12px;
+      padding:8px 10px;
+      border-radius: 14px;
+      backdrop-filter: blur(8px);
+    }
+    /* Responsive spans */
+    .span-6{grid-column: span 6}
+    .span-4{grid-column: span 4}
+    .span-8{grid-column: span 8}
+    .span-12{grid-column: span 12}
+    @media (max-width: 980px){
+      .span-6,.span-4,.span-8{grid-column: span 12}
+    }
+
+    /* Contact */
+    .contact-grid{
       display:grid; gap:14px;
       grid-template-columns: 1.1fr .9fr;
     }
-    @media (max-width: 900px){
-      .contact-box{grid-template-columns:1fr}
+    @media (max-width: 980px){ .contact-grid{grid-template-columns:1fr} }
+
+    .contact-line{
+      display:grid;
+      grid-template-columns: 110px 1fr;
+      gap:10px;
+      padding:10px 0;
+      border-bottom: 1px dashed rgba(255,255,255,.14);
     }
+    .contact-line:last-child{border-bottom:none}
+    .label{color:var(--muted); font-weight:900}
+    .value{font-weight:900}
+    .link{
+      color: var(--brand2);
+      text-decoration: underline;
+      text-decoration-color: rgba(74,163,255,.45);
+      text-underline-offset: 4px;
+    }
+
     .footer{
-      padding:26px 0 40px;
+      padding:22px 0 40px;
       color:var(--muted);
       font-size:13px;
       border-top:1px solid var(--line);
-      margin-top: 20px;
+      margin-top: 18px;
     }
-    .small{font-size:13px}
-    .link{
-      color: var(--accent);
-      text-decoration: underline;
-      text-decoration-color: rgba(110,168,255,.45);
-      text-underline-offset: 4px;
+
+    /* Lightbox */
+    .lightbox{
+      position:fixed; inset:0;
+      display:none;
+      place-items:center;
+      background: rgba(0,0,0,.72);
+      z-index:999;
+      padding:20px;
     }
+    .lightbox.open{display:grid}
+    .lightbox-inner{
+      max-width: 1100px;
+      width: min(1100px, 96vw);
+      border-radius: 18px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(6,18,37,.90);
+      box-shadow: 0 18px 70px rgba(0,0,0,.55);
+    }
+    .lightbox-inner img{
+      width:100%;
+      max-height: 76vh;
+      object-fit:contain;
+      display:block;
+      background: #000;
+    }
+    .lightbox-bar{
+      display:flex; justify-content:space-between; align-items:center;
+      padding:12px 14px;
+      color:var(--muted);
+      font-weight:900;
+      font-size:13px;
+    }
+    .xbtn{
+      appearance:none; border:none;
+      background: rgba(255,255,255,.10);
+      color: var(--text);
+      font-weight:900;
+      padding:8px 10px;
+      border-radius: 12px;
+      cursor:pointer;
+      border:1px solid rgba(255,255,255,.14);
+    }
+    .xbtn:hover{background: rgba(255,255,255,.14)}
   </style>
 </head>
 
 <body>
+  <!-- Top bar -->
   <div class="topbar">
     <div class="wrap">
       <div class="nav">
         <div class="brand">
-          <div class="logo" aria-hidden="true"></div>
+          <div class="logo-box">
+            <img src="assets/7-removebg-preview.png" alt="Jintat logo" />
+          </div>
           <div>
-            Jintat Industrial
-            <div style="font-weight:600; color:var(--muted); font-size:12px; margin-top:2px;">
-              Precision CNC Machining Partner
-            </div>
+            <div class="brand-name">Jintat Industrial</div>
+            <div class="brand-sub">One-Stop Precision Machining System Integrator</div>
           </div>
         </div>
 
         <div class="navlinks" aria-label="Primary navigation">
-          <a href="#industries">Industries</a>
-          <a href="#support">How We Support</a>
-          <a href="#capabilities">Capabilities</a>
+          <a href="#one-stop">One-Stop</a>
+          <a href="#proof">Proof</a>
           <a href="#quality">Quality</a>
           <a href="#contact">Contact</a>
         </div>
@@ -227,71 +337,69 @@
     </div>
   </div>
 
+  <!-- Hero -->
   <header class="hero">
     <div class="wrap">
       <div class="hero-grid">
         <div class="card">
-          <div class="mini-title">Taiwan-based manufacturing partner</div>
-          <h1>Reliable precision CNC machining<br>for complex & low-volume parts.</h1>
+          <div class="mini-title">Taiwan-based | Prototype → Low-Volume | High-mix</div>
+          <h1>Reliable CNC machining is not just cutting metal.<br>It’s system-level execution.</h1>
+
           <p class="lead">
-            Overseas buyers are no longer asking only “How cheap can you do it?”
-            They want consistent delivery, engineering understanding, and execution quality.
-            We support prototype to low-volume builds with clear communication and ownership.
+            We position ourselves as a professional <strong>one-stop machining system integrator</strong> —
+            owning the details across machining, coordination, and inspection to reduce supplier risk for overseas buyers.
           </p>
 
           <div class="badges">
-            <div class="badge"><span class="dot"></span> Prototype → Low-volume</div>
-            <div class="badge"><span class="dot"></span> Tight tolerance & complex parts</div>
-            <div class="badge"><span class="dot"></span> One-stop coordination</div>
-            <div class="badge"><span class="dot"></span> Fast engineering response</div>
+            <div class="badge"><span class="dot"></span> One-Stop Manufacturing</div>
+            <div class="badge"><span class="dot"></span> Prototype & Low-Volume</div>
+            <div class="badge"><span class="dot"></span> ISO 9001</div>
+            <div class="badge"><span class="dot"></span> CMM & Vision Measurement</div>
+            <div class="badge"><span class="dot"></span> Overseas Buyer Friendly</div>
           </div>
 
           <div class="divider"></div>
 
           <div class="grid3">
             <div class="kpi">
-              <strong>20+ years</strong>
-              <span>Precision machining experience</span>
+              <strong>System Integrator Mindset</strong>
+              <span>One point of contact to coordinate machining + finishing + inspection.</span>
             </div>
             <div class="kpi">
-              <strong>High-mix</strong>
-              <span>Prototype & small batch focus</span>
+              <strong>Quality & Documentation</strong>
+              <span>Inspection reports for critical dimensions and repeatability.</span>
             </div>
             <div class="kpi">
-              <strong>Risk-first</strong>
-              <span>Manufacturability & repeatability</span>
+              <strong>Execution Reliability</strong>
+              <span>Consistent delivery for complex and high-precision parts.</span>
             </div>
           </div>
         </div>
 
         <div class="card">
-          <div class="mini-title">What buyers care about</div>
-          <h2 style="margin-top:0;">Reduce supplier risk.</h2>
-          <p class="muted">
-            Most sourcing issues are not machining — they are coordination gaps.
-            We help you reduce surprises by owning critical details early.
+          <div class="mini-title">Key strengths</div>
+          <h2 style="margin-top:0;">One-Stop = Less Risk</h2>
+          <p class="lead" style="margin-bottom:10px;">
+            Buyers win when the supplier owns coordination and prevents surprises early.
           </p>
-          <ul class="list">
-            <li>Clear tolerance discussion (functional vs cosmetic)</li>
-            <li>Proactive DFM feedback before machining</li>
-            <li>Support finishing, inspection reports, simple assembly</li>
-            <li>One point of contact for smoother execution</li>
-          </ul>
-
-          <div class="divider"></div>
-
-          <div class="mini-title">Best fit for</div>
-          <div class="badges">
-            <div class="badge">Semiconductor equipment</div>
-            <div class="badge">Automation & machinery</div>
-            <div class="badge">Medical & precision</div>
-            <div class="badge">Hardware teams</div>
+          <div class="kpi">
+            <strong>What we integrate</strong>
+            <span>
+              CNC turning / milling • finishing coordination • inspection / measurement reports • simple assembly support (as needed).
+            </span>
+          </div>
+          <div style="margin-top:12px" class="kpi">
+            <strong>Inspection capability</strong>
+            <span>
+              CMM (Mitutoyo) • Vision / measurement (Keyence) • Dimensional verification to customer requirements.
+            </span>
           </div>
 
           <div class="divider"></div>
 
-          <p class="small muted">
-            Want a quick review? Send a drawing and tell us what feature controls the assembly accuracy.
+          <div class="pill">Tip for faster quotation</div>
+          <p class="lead" style="margin-top:10px;">
+            Send drawings + highlight the <strong>critical features</strong> (what controls assembly / function).
           </p>
         </div>
       </div>
@@ -299,158 +407,209 @@
   </header>
 
   <main>
-    <section id="industries">
+    <!-- One-Stop section -->
+    <section id="one-stop">
       <div class="wrap">
         <div class="card">
-          <div class="mini-title">Industries we support</div>
-          <h2>Where reliability matters more than low price</h2>
-          <div class="grid3">
-            <div class="kpi">
-              <strong>Semiconductor & test equipment</strong>
-              <span>Fixtures, brackets, thermal / structural parts, modules</span>
-            </div>
-            <div class="kpi">
-              <strong>Automation & industrial machinery</strong>
-              <span>Precision components for stable assembly and repeat builds</span>
-            </div>
-            <div class="kpi">
-              <strong>Medical & precision components</strong>
-              <span>Dimensional control, repeatability, documentation support</span>
-            </div>
-          </div>
-          <div style="margin-top:12px" class="muted small">
-            If you’re building hardware and need prototype-to-production continuity, you’re in the right place.
-          </div>
-        </div>
-      </div>
-    </section>
+          <div class="mini-title">One-Stop machining system integrator</div>
+          <h2>We help you execute like a single, accountable system — not scattered suppliers.</h2>
 
-    <section id="support">
-      <div class="wrap">
-        <div class="card">
-          <div class="mini-title">How we support projects</div>
-          <h2>More than machining — we help you avoid problems before they happen</h2>
-          <div class="grid3">
+          <div class="grid3" style="margin-top:12px;">
             <div class="kpi">
-              <strong>Engineering communication</strong>
-              <span>We ask the right questions early: what tolerance truly matters and why.</span>
+              <strong>Engineering Communication</strong>
+              <span>DFM feedback and tolerance clarification before production begins.</span>
             </div>
             <div class="kpi">
-              <strong>Prototype to low-volume</strong>
-              <span>Fast iteration with stable process planning for repeatability.</span>
+              <strong>Manufacturing Coordination</strong>
+              <span>Coordinate processes to reduce delays and mismatch between suppliers.</span>
             </div>
             <div class="kpi">
-              <strong>Ownership & coordination</strong>
-              <span>We can coordinate finishing, inspection reports, and simple assemblies.</span>
+              <strong>Quality Control</strong>
+              <span>Measurement focus for critical dimensions and repeatability.</span>
             </div>
           </div>
 
           <div class="divider"></div>
 
-          <div class="pill">Typical kickoff questions we ask</div>
-          <ul class="list" style="margin-top:10px">
-            <li>Which feature controls assembly accuracy?</li>
-            <li>Is this tolerance functional or cosmetic?</li>
-            <li>What should we prioritize for prototype vs. production?</li>
-            <li>Any critical surfaces for sealing, alignment, or thermal contact?</li>
+          <div class="pill">What buyers usually ask — and we answer</div>
+          <ul style="margin:10px 0 0; padding-left:18px; color:var(--muted); font-weight:800;">
+            <li>Can you deliver consistently?</li>
+            <li>Can you handle complex or high-precision parts?</li>
+            <li>Can you support prototypes and low-volume production?</li>
+            <li>Can you provide inspection reports and measurement evidence?</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <section id="capabilities">
+    <!-- Proof / Gallery -->
+    <section id="proof">
       <div class="wrap">
         <div class="card">
-          <div class="mini-title">Capabilities</div>
-          <h2>Core CNC strength, with one-stop support when needed</h2>
+          <div class="mini-title">Proof of capability</div>
+          <h2>Machines • Measurement • Finished parts</h2>
+          <p class="lead">
+            Below are real photos showcasing machining capability, inspection environment, and product outcomes.
+          </p>
+
+          <div class="gallery">
+            <!-- Machining -->
+            <div class="shot span-8" data-full="assets/S__166305819.jpg" data-title="Machining capability — CNC production line">
+              <img src="assets/S__166305819.jpg" alt="CNC shop floor" />
+              <div class="cap">CNC machining line</div>
+            </div>
+            <div class="shot span-4" data-full="assets/S__166305818.jpg" data-title="Machining capability — CNC workstation">
+              <img src="assets/S__166305818.jpg" alt="CNC machine operation" />
+              <div class="cap">CNC operation</div>
+            </div>
+
+            <!-- Measurement -->
+            <div class="shot span-6" data-full="assets/S__166305820.jpg" data-title="Inspection — CMM (Mitutoyo) & measurement environment">
+              <img src="assets/S__166305820.jpg" alt="CMM Mitutoyo measurement" />
+              <div class="cap">CMM (Mitutoyo)</div>
+            </div>
+            <div class="shot span-6" data-full="assets/S__166305810.jpg" data-title="Inspection — Keyence vision / measurement verification">
+              <img src="assets/S__166305810.jpg" alt="Keyence measurement" />
+              <div class="cap">Keyence measurement</div>
+            </div>
+
+            <!-- Finished parts -->
+            <div class="shot span-4" data-full="assets/S__166305812.jpg" data-title="Finished parts — precision turned / milled components">
+              <img src="assets/S__166305812.jpg" alt="Finished parts on black background" />
+              <div class="cap">Finished parts</div>
+            </div>
+            <div class="shot span-4" data-full="assets/S__166305813.jpg" data-title="Finished parts — assemblies & complex geometry parts">
+              <img src="assets/S__166305813.jpg" alt="Finished parts set" />
+              <div class="cap">Complex geometry</div>
+            </div>
+            <div class="shot span-4" data-full="assets/S__166305815.jpg" data-title="Finished parts — precision components">
+              <img src="assets/S__166305815.jpg" alt="Precision parts" />
+              <div class="cap">Precision components</div>
+            </div>
+
+            <div class="shot span-6" data-full="assets/S__166305816.jpg" data-title="Inspection workflow — measurement & documentation support">
+              <img src="assets/S__166305816.jpg" alt="Inspection operator" />
+              <div class="cap">Inspection workflow</div>
+            </div>
+            <div class="shot span-6" data-full="assets/S__166305818.jpg" data-title="Production workflow — stable execution and delivery">
+              <img src="assets/S__166305818.jpg" alt="Production workflow" />
+              <div class="cap">Production workflow</div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
           <div class="grid3">
             <div class="kpi">
               <strong>Machining</strong>
-              <span>Precision CNC milling & turning for complex geometry and tight tolerance parts.</span>
+              <span>Turning / milling capability for complex parts and tight tolerances.</span>
             </div>
             <div class="kpi">
-              <strong>Production type</strong>
-              <span>Prototype, high-mix low-volume, and small batch repeatable builds.</span>
+              <strong>Measurement</strong>
+              <span>Mitutoyo CMM + Keyence measurement support for verification & reports.</span>
             </div>
             <div class="kpi">
-              <strong>Materials</strong>
-              <span>Aluminum, stainless steel, tool steel, engineering plastics (on request).</span>
+              <strong>Outcome</strong>
+              <span>Reliable execution for prototype → low-volume builds.</span>
             </div>
           </div>
-          <div class="divider"></div>
-          <p class="muted small">
-            We can share detailed capability lists and equipment info upon request.
-          </p>
         </div>
       </div>
     </section>
 
+    <!-- Quality / ISO -->
     <section id="quality">
       <div class="wrap">
         <div class="card">
-          <div class="mini-title">Quality</div>
-          <h2>Inspection and documentation that buyers can trust</h2>
+          <div class="mini-title">Quality & compliance</div>
+          <h2>ISO 9001 + Inspection evidence that buyers can trust</h2>
+          <p class="lead">
+            We support buyers who require traceable quality control, consistent processes, and documented inspection for critical dimensions.
+          </p>
+
           <div class="grid3">
             <div class="kpi">
-              <strong>Dimensional inspection</strong>
-              <span>Clear inspection records and repeatability mindset.</span>
+              <strong>ISO 9001</strong>
+              <span>Process control and quality system management.</span>
             </div>
             <div class="kpi">
-              <strong>Measurement reports</strong>
-              <span>Add measurement reports for critical dimensions when needed.</span>
+              <strong>CMM (Mitutoyo)</strong>
+              <span>Dimensional inspection for critical features as required.</span>
             </div>
             <div class="kpi">
-              <strong>Process consistency</strong>
-              <span>Focus on stable execution, not just one-time pass.</span>
+              <strong>Keyence Measurement</strong>
+              <span>Vision / measurement verification to match drawing intent.</span>
             </div>
           </div>
+
           <div class="divider"></div>
-          <p class="muted small">
-            Tip: If you have critical features, tell us which dimensions must be controlled for function — we’ll prioritize them.
+
+          <div class="pill">One-Stop emphasis</div>
+          <p class="lead" style="margin-top:10px;">
+            We aim to operate as a <strong>professional system integrator</strong> — so you don’t need to manage multiple vendors for one project.
           </p>
         </div>
       </div>
     </section>
 
+    <!-- Contact -->
     <section id="contact">
       <div class="wrap">
         <div class="card">
           <div class="mini-title">Contact</div>
-          <h2>Send a drawing — we’ll respond with clarity</h2>
-          <div class="contact-box">
-            <div>
-              <p class="muted">
-                If you’re unsure about manufacturability, tolerance definition, or production risk,
-                feel free to reach out. We’re happy to discuss before cutting metal.
-              </p>
+          <h2>Send drawings — we respond with clarity</h2>
+          <p class="lead">
+            For faster quotation, please include: material, quantity, tolerance highlights, application notes, and target delivery date.
+          </p>
 
+          <div class="contact-grid">
+            <div class="kpi">
+              <strong>Direct contact</strong>
               <div class="divider"></div>
 
-              <p class="small">
-                <strong>Email:</strong> <span class="muted">your@email.com</span><br>
-                <strong>Location:</strong> <span class="muted">Taiwan</span><br>
-                <strong>LinkedIn:</strong> <a class="link" href="#" target="_blank" rel="noopener">Add your LinkedIn URL</a>
-              </p>
+              <div class="contact-line">
+                <div class="label">Mobile</div>
+                <div class="value">+886-918-853-297</div>
+              </div>
+              <div class="contact-line">
+                <div class="label">TEL</div>
+                <div class="value">+886-4-8367999</div>
+              </div>
+              <div class="contact-line">
+                <div class="label">Email</div>
+                <div class="value"><a class="link" href="mailto:jintat@jintat.com">jintat@jintat.com</a></div>
+              </div>
 
-              <p class="small muted">
-                Preferred info to include: material, quantity, tolerance highlights, and application notes.
-              </p>
-            </div>
-
-            <div>
-              <div class="kpi">
-                <strong>Quick inquiry template</strong>
-                <span class="muted">
-                  Subject: RFQ – [Part Name] – [Qty] – [Material]<br><br>
-                  • Tolerance highlight:<br>
-                  • Critical feature:<br>
-                  • Finish / coating:<br>
-                  • Target delivery date:
+              <div style="margin-top:12px; color:var(--muted); font-weight:800;">
+                Preferred subject line: <br />
+                <span style="color:var(--text); font-weight:900;">
+                  RFQ – [Part Name] – [Qty] – [Material]
                 </span>
               </div>
-              <div style="margin-top:12px" class="kpi">
-                <strong>Goal</strong>
-                <span class="muted">Fewer surprises. Clear communication. Reliable execution.</span>
+            </div>
+
+            <div class="kpi">
+              <strong>Quick inquiry template</strong>
+              <div class="divider"></div>
+              <div style="color:var(--muted); font-weight:800; font-size:13px; white-space:pre-line;">
+• Part name:
+• Material:
+• Qty:
+• Tolerance highlight (critical features):
+• Finish / coating:
+• Target delivery date:
+• Notes / application:
+              </div>
+
+              <div class="divider"></div>
+              <div style="font-weight:900;">
+                Goal: <span style="color:var(--muted); font-weight:800;">Fewer surprises. Reliable execution. Documented quality.</span>
+              </div>
+
+              <div style="margin-top:12px;">
+                <a class="btn primary" href="mailto:jintat@jintat.com?subject=RFQ%20%E2%80%93%20%5BPart%20Name%5D%20%E2%80%93%20%5BQty%5D%20%E2%80%93%20%5BMaterial%5D&body=Part%20name%3A%0D%0AMaterial%3A%0D%0AQty%3A%0D%0ATolerance%20highlight%20(critical%20features)%3A%0D%0AFinish%2Fcoating%3A%0D%0ATarget%20delivery%20date%3A%0D%0ANotes%2Fapplication%3A">
+                  Email Us Now
+                </a>
               </div>
             </div>
           </div>
@@ -458,16 +617,59 @@
 
         <div class="footer">
           © <span id="y"></span> Jintat Industrial. All rights reserved.
-          <div class="small" style="margin-top:6px;">
-            Built for overseas buyers: reliability, engineering understanding, and execution quality.
+          <div style="margin-top:6px;">
+            One-Stop Precision Machining System Integrator — ISO 9001 • CMM (Mitutoyo) • Keyence Measurement.
           </div>
         </div>
       </div>
     </section>
   </main>
 
+  <!-- Lightbox modal -->
+  <div class="lightbox" id="lb" aria-hidden="true">
+    <div class="lightbox-inner" role="dialog" aria-modal="true">
+      <img id="lbImg" alt="Preview" />
+      <div class="lightbox-bar">
+        <div id="lbTitle">Preview</div>
+        <button class="xbtn" id="lbClose" aria-label="Close">Close</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Lightbox for gallery
+    const lb = document.getElementById('lb');
+    const lbImg = document.getElementById('lbImg');
+    const lbTitle = document.getElementById('lbTitle');
+    const lbClose = document.getElementById('lbClose');
+
+    function openLB(src, title){
+      lbImg.src = src;
+      lbTitle.textContent = title || 'Preview';
+      lb.classList.add('open');
+      lb.setAttribute('aria-hidden','false');
+    }
+    function closeLB(){
+      lb.classList.remove('open');
+      lb.setAttribute('aria-hidden','true');
+      lbImg.src = '';
+    }
+
+    document.querySelectorAll('.shot').forEach(el=>{
+      el.addEventListener('click', ()=>{
+        openLB(el.dataset.full, el.dataset.title);
+      });
+    });
+
+    lbClose.addEventListener('click', closeLB);
+    lb.addEventListener('click', (e)=>{
+      if(e.target === lb) closeLB();
+    });
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape') closeLB();
+    });
   </script>
 </body>
 </html>
