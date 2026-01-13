@@ -8,15 +8,15 @@
 
   <style>
     :root{
-      /* LOGO-aligned industrial palette */
-      --brand-primary:#1f3b64;   /* 工業深藍 */
-      --brand-accent:#4aa3ff;    /* LOGO 亮藍 */
-      --bg:#0f1724;              /* 深藍黑 */
-      --card:#141e2e;            /* 金屬藍灰 */
+      /* LOGO-aligned industrial palette (設備商工業藍) */
+      --brand:#1f3b64;          /* 工業深藍（主色） */
+      --brand2:#4aa3ff;         /* LOGO 亮藍（強調色/CTA） */
+      --bg:#0f1724;             /* 深藍黑背景 */
+      --card:#141e2e;           /* 金屬藍灰卡片 */
       --text:#eef5ff;
       --muted:#a9b8d6;
       --line:rgba(255,255,255,.10);
-      --shadow:0 18px 60px rgba(0,0,0,.45);
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
       --radius:16px;
       --radius2:20px;
     }
@@ -24,7 +24,7 @@
     html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
       color:var(--text);
       background:
         radial-gradient(1200px 800px at 12% 10%, rgba(31,59,100,.35), transparent 55%),
@@ -44,168 +44,627 @@
     }
     .nav{
       display:flex; align-items:center; justify-content:space-between;
-      padding:12px 0; gap:16px;
+      padding:12px 0;
+      gap:16px;
     }
-    .brand{display:flex; align-items:center; gap:12px}
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      min-width: 240px;
+    }
     .logo-box{
       width:52px; height:52px; border-radius:14px;
-      background:#fff;
+      background: rgba(255,255,255,.96);
       display:flex; align-items:center; justify-content:center;
       box-shadow: var(--shadow);
+      border:1px solid rgba(0,0,0,.06);
       overflow:hidden;
+      flex:0 0 auto;
     }
-    .logo-box img{width:100%; height:100%; object-fit:contain; padding:6px}
-    .brand-name{font-weight:900}
-    .brand-sub{font-size:12px; color:var(--muted)}
+    .logo-box img{
+      width:100%; height:100%;
+      object-fit:contain;
+      padding:6px;
+    }
+    .brand-name{
+      font-weight:900;
+      letter-spacing:.2px;
+      line-height:1.1;
+    }
+    .brand-sub{
+      font-weight:750;
+      color:var(--muted);
+      font-size:12px;
+      margin-top:4px;
+    }
 
-    .navlinks{display:flex; gap:14px; font-weight:800; font-size:14px}
-    .navlinks a{padding:8px 10px; border-radius:12px}
-    .navlinks a:hover{background:rgba(255,255,255,.06)}
+    .navlinks{
+      display:flex; gap:14px; flex-wrap:wrap;
+      font-weight:850; color:var(--muted); font-size:14px;
+      justify-content:center;
+    }
+    .navlinks a{ padding:8px 10px; border-radius:12px; }
+    .navlinks a:hover{ background: rgba(255,255,255,.06); color:var(--text); }
 
-    .cta{display:flex; gap:10px; align-items:center}
+    .cta{
+      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+      justify-content:flex-end;
+      min-width: 240px;
+    }
     .btn{
-      padding:10px 14px;
-      border-radius:12px;
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 14px; border-radius:12px;
       font-weight:900;
       border:1px solid var(--line);
-      background:rgba(255,255,255,.05);
+      background: rgba(255,255,255,.05);
       color:var(--text);
+      font-size:14px;
+      white-space:nowrap;
       cursor:pointer;
+      transition: transform .12s ease, background .18s ease;
     }
+    .btn:hover{background: rgba(255,255,255,.08); transform: translateY(-1px)}
     .btn.primary{
       border:none;
-      background:linear-gradient(135deg,var(--brand-primary),var(--brand-accent));
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      color:#fff;
     }
 
-    /* Cards */
+    /* Language switch */
+    .lang-switch{ display:flex; gap:8px; align-items:center; }
+    .lang-btn{
+      padding:8px 10px; border-radius:12px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.05);
+      color:var(--text);
+      font-weight:900;
+      font-size:13px;
+      cursor:pointer;
+    }
+    .lang-btn.active{
+      background: rgba(31,59,100,.65);
+      border-color: rgba(74,163,255,.55);
+    }
+
+    /* i18n block */
+    [data-i18n]{ display:none; }
+    [data-i18n].show{ display:block; }
+
+    /* Layout cards */
     .card{
-      background:rgba(20,30,46,.85);
+      background: rgba(20,30,46,.86);
       border:1px solid var(--line);
-      border-radius:var(--radius2);
-      box-shadow:var(--shadow);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
       padding:22px;
     }
-    h1{font-size:38px; margin:0 0 12px}
-    h2{margin:0 0 10px}
-    .lead{color:var(--muted); max-width:75ch}
-
-    section{padding:26px 0}
-    .divider{height:1px; background:var(--line); margin:18px 0}
-
-    /* Hero */
-    .hero{padding:56px 0}
-    .hero-grid{display:grid; gap:16px; grid-template-columns:1.25fr .75fr}
-    @media(max-width:900px){.hero-grid{grid-template-columns:1fr}}
-
-    .badge{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.04);
-      font-weight:800;
+    .mini-title{
+      margin:0 0 10px;
       font-size:13px;
       color:var(--muted);
+      font-weight:900;
+      letter-spacing:.24px;
+      text-transform:uppercase;
+    }
+    h1{
+      margin:0 0 12px;
+      font-size:40px;
+      line-height:1.12;
+      letter-spacing:-.4px;
+    }
+    @media (max-width: 560px){ h1{font-size:32px} }
+    h2{margin:0 0 10px; font-size:22px}
+    p{margin:0 0 12px}
+    .lead{color:var(--muted); font-size:16px; margin:0 0 16px; max-width: 75ch}
+
+    .hero{padding:56px 0 18px}
+    .hero-grid{
+      display:grid; gap:16px;
+      grid-template-columns: 1.25fr .75fr;
+      align-items:stretch;
+    }
+    @media (max-width: 980px){ .hero-grid{grid-template-columns:1fr} }
+
+    .badges{display:flex; flex-wrap:wrap; gap:10px; margin-top: 12px}
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px; border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color:var(--muted);
+      font-weight:850;
+      font-size:13px;
     }
     .dot{
-      width:8px; height:8px; border-radius:50%;
-      background:var(--brand-accent);
-      box-shadow:0 0 0 4px rgba(74,163,255,.18);
+      width:8px; height:8px; border-radius:999px;
+      background: var(--brand2);
+      box-shadow: 0 0 0 4px rgba(74,163,255,.18);
     }
 
-    /* Footer */
+    .grid3{display:grid; gap:12px; grid-template-columns: repeat(3, 1fr)}
+    @media (max-width: 980px){ .grid3{grid-template-columns:1fr} }
+
+    .kpi{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      border-radius: 16px;
+      padding:12px;
+    }
+    .kpi strong{display:block; font-size:16px; color:var(--text); font-weight:900}
+    .kpi span{color:var(--muted); font-size:13px}
+
+    section{padding:22px 0}
+    .divider{height:1px; background: var(--line); margin: 18px 0}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px; border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      font-weight:900;
+      color:var(--text);
+      font-size:13px;
+    }
+
+    /* Gallery */
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:10px;
+      margin-top: 12px;
+    }
+    .shot{
+      position:relative;
+      border-radius: 16px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      cursor:pointer;
+      min-height: 160px;
+    }
+    .shot img{
+      width:100%; height:100%;
+      object-fit:cover;
+      display:block;
+      transform: scale(1.02);
+      transition: transform .25s ease;
+      filter: contrast(1.03) saturate(1.02);
+    }
+    .shot:hover img{ transform: scale(1.06); }
+    .shot .cap{
+      position:absolute;
+      left:10px; right:10px; bottom:10px;
+      background: rgba(15,23,36,.72);
+      border:1px solid rgba(255,255,255,.14);
+      color: var(--text);
+      font-weight:900;
+      font-size:12px;
+      padding:8px 10px;
+      border-radius: 14px;
+      backdrop-filter: blur(8px);
+    }
+    .span-6{grid-column: span 6}
+    .span-4{grid-column: span 4}
+    .span-8{grid-column: span 8}
+    .span-12{grid-column: span 12}
+    @media (max-width: 980px){
+      .span-6,.span-4,.span-8{grid-column: span 12}
+    }
+
+    /* Contact */
+    .contact-grid{
+      display:grid; gap:14px;
+      grid-template-columns: 1.1fr .9fr;
+    }
+    @media (max-width: 980px){ .contact-grid{grid-template-columns:1fr} }
+
+    .contact-line{
+      display:grid;
+      grid-template-columns: 110px 1fr;
+      gap:10px;
+      padding:10px 0;
+      border-bottom: 1px dashed rgba(255,255,255,.14);
+    }
+    .contact-line:last-child{border-bottom:none}
+    .label{color:var(--muted); font-weight:900}
+    .value{font-weight:900}
+    .link{
+      color: var(--brand2);
+      text-decoration: underline;
+      text-decoration-color: rgba(74,163,255,.45);
+      text-underline-offset: 4px;
+    }
+
     .footer{
-      padding:30px 0;
+      padding:22px 0 40px;
       color:var(--muted);
       font-size:13px;
       border-top:1px solid var(--line);
-      margin-top:20px;
+      margin-top: 18px;
     }
+
+    /* Lightbox */
+    .lightbox{
+      position:fixed; inset:0;
+      display:none;
+      place-items:center;
+      background: rgba(0,0,0,.72);
+      z-index:999;
+      padding:20px;
+    }
+    .lightbox.open{display:grid}
+    .lightbox-inner{
+      max-width: 1100px;
+      width: min(1100px, 96vw);
+      border-radius: 18px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(15,23,36,.90);
+      box-shadow: 0 18px 70px rgba(0,0,0,.55);
+    }
+    .lightbox-inner img{
+      width:100%;
+      max-height: 76vh;
+      object-fit:contain;
+      display:block;
+      background: #000;
+    }
+    .lightbox-bar{
+      display:flex; justify-content:space-between; align-items:center;
+      padding:12px 14px;
+      color:var(--muted);
+      font-weight:900;
+      font-size:13px;
+    }
+    .xbtn{
+      appearance:none; border:none;
+      background: rgba(255,255,255,.10);
+      color: var(--text);
+      font-weight:900;
+      padding:8px 10px;
+      border-radius: 12px;
+      cursor:pointer;
+      border:1px solid rgba(255,255,255,.14);
+    }
+    .xbtn:hover{background: rgba(255,255,255,.14)}
+
+    /* Machine table */
+    .table{
+      width:100%;
+      border-collapse: collapse;
+      overflow:hidden;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.03);
+    }
+    .table th, .table td{
+      padding:10px 10px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      text-align:left;
+      vertical-align:top;
+      font-weight:800;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .table th{
+      color:var(--text);
+      background: rgba(255,255,255,.04);
+      font-weight:900;
+      font-size:13px;
+    }
+    .table td strong{ color:var(--text); font-weight:900; }
+    .img-card{
+      border:1px solid rgba(255,255,255,.14);
+      border-radius: 16px;
+      overflow:hidden;
+      background: rgba(255,255,255,.03);
+    }
+    .img-card img{ width:100%; display:block; }
   </style>
 </head>
 
 <body>
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="wrap">
+      <div class="nav">
+        <div class="brand">
+          <div class="logo-box">
+            <img src="7-removebg-preview.png" alt="Jintat logo" />
+          </div>
+          <div>
+            <div class="brand-name">Jintat Industrial</div>
+            <div class="brand-sub">
+              <span data-i18n="en" class="show">One-Stop Precision Machining System Integrator</span>
+              <span data-i18n="zh">一站式精密加工整合服務</span>
+            </div>
+          </div>
+        </div>
 
-<div class="topbar">
-  <div class="wrap">
-    <div class="nav">
-      <div class="brand">
-        <div class="logo-box">
-          <img src="7-removebg-preview.png" alt="Jintat logo">
+        <div class="navlinks" aria-label="Primary navigation">
+          <a href="#one-stop">
+            <span data-i18n="en" class="show">One-Stop</span>
+            <span data-i18n="zh">一站式</span>
+          </a>
+          <a href="#proof">
+            <span data-i18n="en" class="show">Proof</span>
+            <span data-i18n="zh">實績</span>
+          </a>
+          <a href="#machines">
+            <span data-i18n="en" class="show">Machines</span>
+            <span data-i18n="zh">設備</span>
+          </a>
+          <a href="#quality">
+            <span data-i18n="en" class="show">Quality</span>
+            <span data-i18n="zh">品質</span>
+          </a>
+          <a href="#contact">
+            <span data-i18n="en" class="show">Contact</span>
+            <span data-i18n="zh">聯絡</span>
+          </a>
         </div>
-        <div>
-          <div class="brand-name">Jintat Industrial</div>
-          <div class="brand-sub">One-Stop Precision Machining System Integrator</div>
+
+        <div class="cta">
+          <div class="lang-switch" title="Language">
+            <button type="button" class="lang-btn active" data-lang="en">EN</button>
+            <button type="button" class="lang-btn" data-lang="zh">中文</button>
+          </div>
+          <a class="btn" href="#contact">
+            <span data-i18n="en" class="show">Get a Quote</span>
+            <span data-i18n="zh">快速報價</span>
+          </a>
+          <a class="btn primary" href="#contact">
+            <span data-i18n="en" class="show">Send Drawing</span>
+            <span data-i18n="zh">傳圖評估</span>
+          </a>
         </div>
-      </div>
-      <div class="cta">
-        <a class="btn" href="#contact">Get a Quote</a>
-        <a class="btn primary" href="#contact">Send Drawing</a>
       </div>
     </div>
   </div>
-</div>
 
-<header class="hero">
-  <div class="wrap">
-    <div class="hero-grid">
-      <div class="card">
-        <h1>We reduce machining risk.<br>From prototype to production.</h1>
-        <p class="lead">
-          Jintat Industrial is a Taiwan-based <strong>precision CNC machining system integrator</strong>,
-          helping global engineers turn uncertain designs into manufacturable, repeatable parts.
-        </p>
+  <!-- Hero -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="card">
+          <div class="mini-title">
+            <span data-i18n="en" class="show">Taiwan-based | Prototype → Low-Volume | High-mix</span>
+            <span data-i18n="zh">台灣製造｜打樣 → 小量量產｜高混低量</span>
+          </div>
 
-        <div style="margin-top:14px">
-          <span class="badge"><span class="dot"></span> One-Stop Manufacturing</span>
-          <span class="badge"><span class="dot"></span> Prototype & Low Volume</span>
-          <span class="badge"><span class="dot"></span> ISO 9001</span>
-          <span class="badge"><span class="dot"></span> CMM & Keyence</span>
-          <span class="badge"><span class="dot"></span> 24/7 Machining</span>
+          <div data-i18n="en" class="show">
+            <h1>Reliable CNC machining is not just cutting metal.<br>It’s system-level execution.</h1>
+            <p class="lead">
+              We are a <strong>one-stop precision machining system integrator</strong> in Taiwan —
+              helping overseas buyers reduce supplier risk through strong coordination, fast feedback, and documented quality.
+            </p>
+          </div>
+
+          <div data-i18n="zh">
+            <h1>穩定的 CNC 加工不只是「切金屬」。<br>而是把整個製造系統跑順。</h1>
+            <p class="lead">
+              瑨達工業提供 <strong>一站式精密加工整合</strong>，
+              透過清楚的工程溝通、快速回饋與可追溯的量測文件，協助海外客戶降低供應風險。
+            </p>
+          </div>
+
+          <div class="badges">
+            <div class="badge"><span class="dot"></span>
+              <span data-i18n="en" class="show">One-Stop Manufacturing</span>
+              <span data-i18n="zh">一站式製造</span>
+            </div>
+            <div class="badge"><span class="dot"></span>
+              <span data-i18n="en" class="show">Prototype & Low-Volume</span>
+              <span data-i18n="zh">打樣與小量</span>
+            </div>
+            <div class="badge"><span class="dot"></span>
+              <span data-i18n="en" class="show">24/7 Machining</span>
+              <span data-i18n="zh">24 小時加工</span>
+            </div>
+            <div class="badge"><span class="dot"></span>
+              <span data-i18n="en" class="show">ISO 9001</span>
+              <span data-i18n="zh">ISO 9001</span>
+            </div>
+            <div class="badge"><span class="dot"></span>
+              <span data-i18n="en" class="show">Inspection Reports</span>
+              <span data-i18n="zh">量測報告</span>
+            </div>
+            <div class="badge"><span class="dot"></span>
+              <span data-i18n="en" class="show">CMM & Keyence</span>
+              <span data-i18n="zh">三次元 & Keyence</span>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="grid3">
+            <div class="kpi">
+              <strong>
+                <span data-i18n="en" class="show">Fast Engineering Feedback</span>
+                <span data-i18n="zh">快速工程回饋</span>
+              </strong>
+              <span>
+                <span data-i18n="en" class="show">DFM suggestions & tolerance clarification before production.</span>
+                <span data-i18n="zh">生產前提供 DFM 建議與公差釐清，降低返工風險。</span>
+              </span>
+            </div>
+            <div class="kpi">
+              <strong>
+                <span data-i18n="en" class="show">Quality & Documentation</span>
+                <span data-i18n="zh">品質與文件</span>
+              </strong>
+              <span>
+                <span data-i18n="en" class="show">Inspection reports for critical dimensions and repeatability.</span>
+                <span data-i18n="zh">可提供關鍵尺寸量測報告與重複性證明。</span>
+              </span>
+            </div>
+            <div class="kpi">
+              <strong>
+                <span data-i18n="en" class="show">24/7 Execution</span>
+                <span data-i18n="zh">24 小時執行力</span>
+              </strong>
+              <span>
+                <span data-i18n="en" class="show">Day & night shifts for urgent projects and quick turnaround.</span>
+                <span data-i18n="zh">日夜班支援急件與快速交期。</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="pill">
+            <span data-i18n="en" class="show">Send STEP / DWG / PDF for quick evaluation</span>
+            <span data-i18n="zh">可直接寄 STEP / DWG / PDF 圖檔快速評估</span>
+          </div>
+          <p class="lead" style="margin-top:10px;">
+            <span data-i18n="en" class="show">
+              The fastest way: send drawings + highlight <strong>critical features</strong> (what controls assembly / function).
+            </span>
+            <span data-i18n="zh">
+              最快方式：寄圖＋標註 <strong>關鍵尺寸</strong>（影響組裝 / 功能的尺寸）。
+            </span>
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="mini-title">
+            <span data-i18n="en" class="show">Key strengths</span>
+            <span data-i18n="zh">核心強項</span>
+          </div>
+
+          <div data-i18n="en" class="show">
+            <h2 style="margin-top:0;">One-Stop = Less Risk</h2>
+            <p class="lead" style="margin-bottom:10px;">
+              Buyers win when the supplier owns coordination and prevents surprises early.
+            </p>
+          </div>
+          <div data-i18n="zh">
+            <h2 style="margin-top:0;">一站式 = 降低風險</h2>
+            <p class="lead" style="margin-bottom:10px;">
+              供應商能把流程整合好、提前發現問題，採購與工程就能省掉大量溝通成本。
+            </p>
+          </div>
+
+          <div class="kpi">
+            <strong>
+              <span data-i18n="en" class="show">What we integrate</span>
+              <span data-i18n="zh">我們整合什麼</span>
+            </strong>
+            <span>
+              <span data-i18n="en" class="show">
+                CNC turning / milling • finishing coordination • inspection / measurement reports • simple assembly support (as needed).
+              </span>
+              <span data-i18n="zh">
+                CNC 車削 / 銑削 • 表面處理協調 • 量測與報告 • 簡易組裝支援（依需求）。
+              </span>
+            </span>
+          </div>
+
+          <div style="margin-top:12px" class="kpi">
+            <strong>
+              <span data-i18n="en" class="show">Inspection capability</span>
+              <span data-i18n="zh">量測能力</span>
+            </strong>
+            <span>
+              <span data-i18n="en" class="show">
+                CMM (Mitutoyo) • Vision / measurement (Keyence) • Dimensional verification to customer requirements.
+              </span>
+              <span data-i18n="zh">
+                三次元（Mitutoyo）• 影像量測（Keyence）• 依圖面需求進行尺寸驗證與文件化。
+              </span>
+            </span>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="pill">
+            <span data-i18n="en" class="show">Tip for faster quotation</span>
+            <span data-i18n="zh">加速報價小技巧</span>
+          </div>
+          <p class="lead" style="margin-top:10px;">
+            <span data-i18n="en" class="show">
+              Include material, quantity, tolerance highlights, and target delivery date.
+            </span>
+            <span data-i18n="zh">
+              請提供材質、數量、關鍵公差與期望交期，報價會更快更準。
+            </span>
+          </p>
         </div>
       </div>
+    </div>
+  </header>
 
-      <div class="card">
-        <h2>Why engineers work with us</h2>
-        <p class="lead">
-          We don’t just cut metal.  
-          We clarify drawings, give DFM feedback, control quality,
-          and deliver with documentation you can trust.
-        </p>
-        <div class="divider"></div>
-        <p class="lead">
-          Send STEP / DWG / PDF drawings for fast feasibility review.
-        </p>
+  <main>
+    <!-- One-Stop section -->
+    <section id="one-stop">
+      <div class="wrap">
+        <div class="card">
+          <div class="mini-title">
+            <span data-i18n="en" class="show">One-Stop machining system integrator</span>
+            <span data-i18n="zh">一站式加工整合</span>
+          </div>
+
+          <h2>
+            <span data-i18n="en" class="show">Execute like a single, accountable system — not scattered suppliers.</span>
+            <span data-i18n="zh">用「一個可負責的系統」去執行，而不是分散的供應商拼湊。</span>
+          </h2>
+
+          <div class="grid3" style="margin-top:12px;">
+            <div class="kpi">
+              <strong>
+                <span data-i18n="en" class="show">Engineering Communication</span>
+                <span data-i18n="zh">工程溝通</span>
+              </strong>
+              <span>
+                <span data-i18n="en" class="show">DFM feedback and tolerance clarification before production begins.</span>
+                <span data-i18n="zh">生產前先做 DFM 回饋與公差釐清。</span>
+              </span>
+            </div>
+            <div class="kpi">
+              <strong>
+                <span data-i18n="en" class="show">Manufacturing Coordination</span>
+                <span data-i18n="zh">製程協調</span>
+              </strong>
+              <span>
+                <span data-i18n="en" class="show">Coordinate processes to reduce delays and mismatch between suppliers.</span>
+                <span data-i18n="zh">整合製程節點，降低延誤與交接失配。</span>
+              </span>
+            </div>
+            <div class="kpi">
+              <strong>
+                <span data-i18n="en" class="show">Quality Control</span>
+                <span data-i18n="zh">品質控管</span>
+              </strong>
+              <span>
+                <span data-i18n="en" class="show">Measurement focus for critical dimensions and repeatability.</span>
+                <span data-i18n="zh">關鍵尺寸與重複性為核心的量測與管制。</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="pill">
+            <span data-i18n="en" class="show">What buyers usually ask — and we answer</span>
+            <span data-i18n="zh">採購常問的問題，我們都能回答</span>
+          </div>
+
+          <ul style="margin:10px 0 0; padding-left:18px; color:var(--muted); font-weight:800;">
+            <li>
+              <span data-i18n="en" class="show">Can you deliver consistently?</span>
+              <span data-i18n="zh">交期能不能穩定？</span>
+            </li>
+            <li>
+              <span data-i18n="en" class="show">Can you handle complex or high-precision parts?</span>
+              <span data-i18n="zh">複雜/高精度零件能不能做？</span>
+            </li>
+            <li>
+              <span data-i18n="en" class="show">Can you support prototypes and low-volume production?</span>
+              <span data-i18n="zh">打樣與小量量產能不能支援？</span>
+            </li>
+            <li>
+              <span data-i18n="en" class="show">Can you provide inspection reports and measurement evidence?</span>
+              <span data-i18n="zh">能不能提供量測報告/證據？</span>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </div>
-</header>
-
-<section id="contact">
-  <div class="wrap">
-    <div class="card">
-      <h2>Contact & RFQ</h2>
-      <p class="lead">
-        Email us your drawing with material, quantity, tolerance highlights, and target delivery date.
-      </p>
-      <div class="divider"></div>
-      <p><strong>Email:</strong> <a href="mailto:jintat@jintat.com">jintat@jintat.com</a></p>
-      <p><strong>Mobile:</strong> +886-918-853-297</p>
-      <p><strong>Tel:</strong> +886-4-8367999</p>
-      <div style="margin-top:14px">
-        <a class="btn primary" href="mailto:jintat@jintat.com">Email Us Now</a>
-      </div>
-    </div>
-
-    <div class="footer">
-      © <span id="y"></span> Jintat Industrial. All rights reserved.
-    </div>
-  </div>
-</section>
-
-<script>
-  document.getElementById("y").textContent = new Date().getFullYear();
-</script>
-
-</body>
-</html>
+    </section>
