@@ -126,8 +126,22 @@
     }
 
     /* i18n block */
-    [data-i18n]{ display:none; }
-    [data-i18n].show{ display:block; }
+    /* i18n block (fix layout) */
+[data-i18n]{ display:none; }
+
+/* spans should stay inline */
+span[data-i18n].show{ display:inline; }
+
+/* blocks should be block */
+div[data-i18n].show,
+p[data-i18n].show,
+h1[data-i18n].show,
+h2[data-i18n].show,
+ul[data-i18n].show,
+table[data-i18n].show{
+  display:block;
+}
+
 
     /* Layout cards */
     .card{
