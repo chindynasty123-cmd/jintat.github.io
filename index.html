@@ -8,11 +8,10 @@
 
   <style>
     :root{
-      /* LOGO-aligned industrial palette (設備商工業藍) */
-      --brand:#1f3b64;          /* 工業深藍（主色） */
-      --brand2:#4aa3ff;         /* LOGO 亮藍（強調色/CTA） */
-      --bg:#0f1724;             /* 深藍黑背景 */
-      --card:#141e2e;           /* 金屬藍灰卡片 */
+      --brand:#1f3b64;
+      --brand2:#4aa3ff;
+      --bg:#0f1724;
+      --card:#141e2e;
       --text:#eef5ff;
       --muted:#a9b8d6;
       --line:rgba(255,255,255,.10);
@@ -35,47 +34,33 @@
     a{color:inherit; text-decoration:none}
     .wrap{max-width:1120px; margin:0 auto; padding:0 20px}
 
+    /* ✅ 關鍵：讓按鈕/連結「一定可點」；避免背景層吃點擊 */
+    a, button, .btn, .lang-btn { pointer-events:auto !important; }
+    .topbar{ position:sticky; top:0; z-index:99999; }
+    .hero, section, footer { position:relative; z-index:1; }
+
     /* Topbar */
     .topbar{
-      position:sticky; top:0; z-index:50;
       backdrop-filter: blur(10px);
       background: rgba(15,23,36,.85);
       border-bottom:1px solid var(--line);
     }
     .nav{
       display:flex; align-items:center; justify-content:space-between;
-      padding:12px 0;
-      gap:16px;
+      padding:12px 0; gap:16px;
     }
-    .brand{
-      display:flex; align-items:center; gap:12px;
-      min-width: 240px;
-    }
+    .brand{display:flex; align-items:center; gap:12px; min-width:240px;}
     .logo-box{
       width:52px; height:52px; border-radius:14px;
       background: rgba(255,255,255,.96);
       display:flex; align-items:center; justify-content:center;
       box-shadow: var(--shadow);
       border:1px solid rgba(0,0,0,.06);
-      overflow:hidden;
-      flex:0 0 auto;
+      overflow:hidden; flex:0 0 auto;
     }
-    .logo-box img{
-      width:100%; height:100%;
-      object-fit:contain;
-      padding:6px;
-    }
-    .brand-name{
-      font-weight:900;
-      letter-spacing:.2px;
-      line-height:1.1;
-    }
-    .brand-sub{
-      font-weight:750;
-      color:var(--muted);
-      font-size:12px;
-      margin-top:4px;
-    }
+    .logo-box img{width:100%; height:100%; object-fit:contain; padding:6px;}
+    .brand-name{font-weight:900; letter-spacing:.2px; line-height:1.1;}
+    .brand-sub{font-weight:750; color:var(--muted); font-size:12px; margin-top:4px;}
 
     .navlinks{
       display:flex; gap:14px; flex-wrap:wrap;
@@ -87,8 +72,7 @@
 
     .cta{
       display:flex; gap:10px; align-items:center; flex-wrap:wrap;
-      justify-content:flex-end;
-      min-width: 240px;
+      justify-content:flex-end; min-width:240px;
     }
     .btn{
       display:inline-flex; align-items:center; justify-content:center;
@@ -125,7 +109,7 @@
       border-color: rgba(74,163,255,.55);
     }
 
-    /* i18n block (fix layout) */
+    /* i18n */
     [data-i18n]{ display:none; }
     span[data-i18n].show{ display:inline; }
     div[data-i18n].show,
@@ -137,7 +121,7 @@
       display:block;
     }
 
-    /* Layout cards */
+    /* Cards */
     .card{
       background: rgba(20,30,46,.86);
       border:1px solid var(--line);
@@ -153,12 +137,7 @@
       letter-spacing:.24px;
       text-transform:uppercase;
     }
-    h1{
-      margin:0 0 12px;
-      font-size:40px;
-      line-height:1.12;
-      letter-spacing:-.4px;
-    }
+    h1{margin:0 0 12px; font-size:40px; line-height:1.12; letter-spacing:-.4px;}
     @media (max-width: 560px){ h1{font-size:32px} }
     h2{margin:0 0 10px; font-size:22px}
     p{margin:0 0 12px}
@@ -172,7 +151,7 @@
     }
     @media (max-width: 980px){ .hero-grid{grid-template-columns:1fr} }
 
-    .badges{display:flex; flex-wrap:wrap; gap:10px; margin-top: 12px}
+    .badges{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px}
     .badge{
       display:inline-flex; align-items:center; gap:8px;
       padding:8px 10px; border-radius:999px;
@@ -235,6 +214,7 @@
       transform: scale(1.02);
       transition: transform .25s ease;
       filter: contrast(1.03) saturate(1.02);
+      background: rgba(0,0,0,.35);
     }
     .shot:hover img{ transform: scale(1.06); }
     .shot .cap{
@@ -251,10 +231,9 @@
     }
     .span-6{grid-column: span 6}
     .span-4{grid-column: span 4}
-    .span-8{grid-column: span 8}
     .span-12{grid-column: span 12}
     @media (max-width: 980px){
-      .span-6,.span-4,.span-8{grid-column: span 12}
+      .span-6,.span-4{grid-column: span 12}
     }
 
     /* Contact */
@@ -295,7 +274,7 @@
       display:none;
       place-items:center;
       background: rgba(0,0,0,.72);
-      z-index:999;
+      z-index:99999;
       padding:20px;
     }
     .lightbox.open{display:grid}
@@ -334,31 +313,7 @@
     }
     .xbtn:hover{background: rgba(255,255,255,.14)}
 
-    /* Machine table */
-    .table{
-      width:100%;
-      border-collapse: collapse;
-      overflow:hidden;
-      border-radius: 14px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.03);
-    }
-    .table th, .table td{
-      padding:10px 10px;
-      border-bottom:1px solid rgba(255,255,255,.10);
-      text-align:left;
-      vertical-align:top;
-      font-weight:800;
-      color:var(--muted);
-      font-size:13px;
-    }
-    .table th{
-      color:var(--text);
-      background: rgba(255,255,255,.04);
-      font-weight:900;
-      font-size:13px;
-    }
-    .table td strong{ color:var(--text); font-weight:900; }
+    /* Machine image */
     .img-card{
       border:1px solid rgba(255,255,255,.14);
       border-radius: 16px;
@@ -376,8 +331,7 @@
       <div class="nav">
         <div class="brand">
           <div class="logo-box">
-            <!-- ✅ 已改成 01.png -->
-            <img src="01.png" alt="Jintat logo" />
+            <img src="./01.png" alt="Jintat logo" />
           </div>
           <div>
             <div class="brand-name">Jintat Industrial</div>
@@ -389,26 +343,11 @@
         </div>
 
         <div class="navlinks" aria-label="Primary navigation">
-          <a href="#one-stop">
-            <span data-i18n="en" class="show">One-Stop</span>
-            <span data-i18n="zh">一站式</span>
-          </a>
-          <a href="#proof">
-            <span data-i18n="en" class="show">Proof</span>
-            <span data-i18n="zh">實績</span>
-          </a>
-          <a href="#machines">
-            <span data-i18n="en" class="show">Machines</span>
-            <span data-i18n="zh">設備</span>
-          </a>
-          <a href="#quality">
-            <span data-i18n="en" class="show">Quality</span>
-            <span data-i18n="zh">品質</span>
-          </a>
-          <a href="#contact">
-            <span data-i18n="en" class="show">Contact</span>
-            <span data-i18n="zh">聯絡</span>
-          </a>
+          <a href="#one-stop"><span data-i18n="en" class="show">One-Stop</span><span data-i18n="zh">一站式</span></a>
+          <a href="#proof"><span data-i18n="en" class="show">Proof</span><span data-i18n="zh">實績</span></a>
+          <a href="#machines"><span data-i18n="en" class="show">Machines</span><span data-i18n="zh">設備</span></a>
+          <a href="#quality"><span data-i18n="en" class="show">Quality</span><span data-i18n="zh">品質</span></a>
+          <a href="#contact"><span data-i18n="en" class="show">Contact</span><span data-i18n="zh">聯絡</span></a>
         </div>
 
         <div class="cta">
@@ -416,14 +355,8 @@
             <button type="button" class="lang-btn active" data-lang="en">EN</button>
             <button type="button" class="lang-btn" data-lang="zh">中文</button>
           </div>
-          <a class="btn" href="#contact">
-            <span data-i18n="en" class="show">Get a Quote</span>
-            <span data-i18n="zh">快速報價</span>
-          </a>
-          <a class="btn primary" href="#contact">
-            <span data-i18n="en" class="show">Send Drawing</span>
-            <span data-i18n="zh">傳圖評估</span>
-          </a>
+          <a class="btn" href="#contact"><span data-i18n="en" class="show">Get a Quote</span><span data-i18n="zh">快速報價</span></a>
+          <a class="btn primary" href="#contact"><span data-i18n="en" class="show">Send Drawing</span><span data-i18n="zh">傳圖評估</span></a>
         </div>
       </div>
     </div>
@@ -456,153 +389,172 @@
           </div>
 
           <div class="badges">
-            <div class="badge"><span class="dot"></span>
-              <span data-i18n="en" class="show">One-Stop Manufacturing</span>
-              <span data-i18n="zh">一站式製造</span>
-            </div>
-            <div class="badge"><span class="dot"></span>
-              <span data-i18n="en" class="show">Prototype & Low-Volume</span>
-              <span data-i18n="zh">打樣與小量</span>
-            </div>
-            <div class="badge"><span class="dot"></span>
-              <span data-i18n="en" class="show">24/7 Machining</span>
-              <span data-i18n="zh">24 小時加工</span>
-            </div>
-            <div class="badge"><span class="dot"></span>
-              <span data-i18n="en" class="show">ISO 9001</span>
-              <span data-i18n="zh">ISO 9001</span>
-            </div>
-            <div class="badge"><span class="dot"></span>
-              <span data-i18n="en" class="show">Inspection Reports</span>
-              <span data-i18n="zh">量測報告</span>
-            </div>
-            <div class="badge"><span class="dot"></span>
-              <span data-i18n="en" class="show">CMM & Keyence</span>
-              <span data-i18n="zh">三次元 & Keyence</span>
-            </div>
+            <div class="badge"><span class="dot"></span><span data-i18n="en" class="show">One-Stop Manufacturing</span><span data-i18n="zh">一站式製造</span></div>
+            <div class="badge"><span class="dot"></span><span data-i18n="en" class="show">Prototype & Low-Volume</span><span data-i18n="zh">打樣與小量</span></div>
+            <div class="badge"><span class="dot"></span><span data-i18n="en" class="show">24/7 Machining</span><span data-i18n="zh">24 小時加工</span></div>
+            <div class="badge"><span class="dot"></span><span data-i18n="en" class="show">ISO 9001</span><span data-i18n="zh">ISO 9001</span></div>
+            <div class="badge"><span class="dot"></span><span data-i18n="en" class="show">Inspection Reports</span><span data-i18n="zh">量測報告</span></div>
+            <div class="badge"><span class="dot"></span><span data-i18n="en" class="show">CMM & Keyence</span><span data-i18n="zh">三次元 & Keyence</span></div>
           </div>
 
           <div class="divider"></div>
 
           <div class="grid3">
             <div class="kpi">
-              <strong>
-                <span data-i18n="en" class="show">Fast Engineering Feedback</span>
-                <span data-i18n="zh">快速工程回饋</span>
-              </strong>
-              <span>
-                <span data-i18n="en" class="show">DFM suggestions & tolerance clarification before production.</span>
-                <span data-i18n="zh">生產前提供 DFM 建議與公差釐清，降低返工風險。</span>
-              </span>
+              <strong><span data-i18n="en" class="show">Fast Engineering Feedback</span><span data-i18n="zh">快速工程回饋</span></strong>
+              <span><span data-i18n="en" class="show">DFM suggestions & tolerance clarification before production.</span><span data-i18n="zh">生產前提供 DFM 建議與公差釐清，降低返工風險。</span></span>
             </div>
             <div class="kpi">
-              <strong>
-                <span data-i18n="en" class="show">Quality & Documentation</span>
-                <span data-i18n="zh">品質與文件</span>
-              </strong>
-              <span>
-                <span data-i18n="en" class="show">Inspection reports for critical dimensions and repeatability.</span>
-                <span data-i18n="zh">可提供關鍵尺寸量測報告與重複性證明。</span>
-              </span>
+              <strong><span data-i18n="en" class="show">Quality & Documentation</span><span data-i18n="zh">品質與文件</span></strong>
+              <span><span data-i18n="en" class="show">Inspection reports for critical dimensions and repeatability.</span><span data-i18n="zh">可提供關鍵尺寸量測報告與重複性證明。</span></span>
             </div>
             <div class="kpi">
-              <strong>
-                <span data-i18n="en" class="show">24/7 Execution</span>
-                <span data-i18n="zh">24 小時執行力</span>
-              </strong>
-              <span>
-                <span data-i18n="en" class="show">Day & night shifts for urgent projects and quick turnaround.</span>
-                <span data-i18n="zh">日夜班支援急件與快速交期。</span>
-              </span>
+              <strong><span data-i18n="en" class="show">24/7 Execution</span><span data-i18n="zh">24 小時執行力</span></strong>
+              <span><span data-i18n="en" class="show">Day & night shifts for urgent projects and quick turnaround.</span><span data-i18n="zh">日夜班支援急件與快速交期。</span></span>
             </div>
           </div>
-
-          <div class="divider"></div>
-
-          <div class="pill">
-            <span data-i18n="en" class="show">Send STEP / DWG / PDF for quick evaluation</span>
-            <span data-i18n="zh">可直接寄 STEP / DWG / PDF 圖檔快速評估</span>
-          </div>
-          <p class="lead" style="margin-top:10px;">
-            <span data-i18n="en" class="show">
-              The fastest way: send drawings + highlight <strong>critical features</strong> (what controls assembly / function).
-            </span>
-            <span data-i18n="zh">
-              最快方式：寄圖＋標註 <strong>關鍵尺寸</strong>（影響組裝 / 功能的尺寸）。
-            </span>
-          </p>
         </div>
 
         <div class="card">
-          <div class="mini-title">
-            <span data-i18n="en" class="show">Key strengths</span>
-            <span data-i18n="zh">核心強項</span>
-          </div>
-
+          <div class="mini-title"><span data-i18n="en" class="show">Key strengths</span><span data-i18n="zh">核心強項</span></div>
           <div data-i18n="en" class="show">
             <h2 style="margin-top:0;">One-Stop = Less Risk</h2>
-            <p class="lead" style="margin-bottom:10px;">
-              Buyers win when the supplier owns coordination and prevents surprises early.
-            </p>
+            <p class="lead" style="margin-bottom:10px;">Buyers win when the supplier owns coordination and prevents surprises early.</p>
           </div>
           <div data-i18n="zh">
             <h2 style="margin-top:0;">一站式 = 降低風險</h2>
-            <p class="lead" style="margin-bottom:10px;">
-              供應商能把流程整合好、提前發現問題，採購與工程就能省掉大量溝通成本。
-            </p>
+            <p class="lead" style="margin-bottom:10px;">供應商能把流程整合好、提前發現問題，採購與工程就能省掉大量溝通成本。</p>
           </div>
-
           <div class="kpi">
-            <strong>
-              <span data-i18n="en" class="show">What we integrate</span>
-              <span data-i18n="zh">我們整合什麼</span>
-            </strong>
-            <span>
-              <span data-i18n="en" class="show">
-                CNC turning / milling • finishing coordination • inspection / measurement reports • simple assembly support (as needed).
-              </span>
-              <span data-i18n="zh">
-                CNC 車削 / 銑削 • 表面處理協調 • 量測與報告 • 簡易組裝支援（依需求）。
-              </span>
-            </span>
+            <strong><span data-i18n="en" class="show">What we integrate</span><span data-i18n="zh">我們整合什麼</span></strong>
+            <span><span data-i18n="en" class="show">CNC turning / milling • finishing coordination • inspection / measurement reports.</span><span data-i18n="zh">CNC 車削 / 銑削 • 表面處理協調 • 量測與報告。</span></span>
           </div>
-
-          <div style="margin-top:12px" class="kpi">
-            <strong>
-              <span data-i18n="en" class="show">Inspection capability</span>
-              <span data-i18n="zh">量測能力</span>
-            </strong>
-            <span>
-              <span data-i18n="en" class="show">
-                CMM (Mitutoyo) • Vision / measurement (Keyence) • Dimensional verification to customer requirements.
-              </span>
-              <span data-i18n="zh">
-                三次元（Mitutoyo）• 影像量測（Keyence）• 依圖面需求進行尺寸驗證與文件化。
-              </span>
-            </span>
-          </div>
-
-          <div class="divider"></div>
-
-          <div class="pill">
-            <span data-i18n="en" class="show">Tip for faster quotation</span>
-            <span data-i18n="zh">加速報價小技巧</span>
-          </div>
-          <p class="lead" style="margin-top:10px;">
-            <span data-i18n="en" class="show">
-              Include material, quantity, tolerance highlights, and target delivery date.
-            </span>
-            <span data-i18n="zh">
-              請提供材質、數量、關鍵公差與期望交期，報價會更快更準。
-            </span>
-          </p>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- 下面其餘內容你貼的很長，我這裡先保留不變即可 -->
-  <!-- ✅ 你只需要確保：01.png 跟 index.html 在同一個資料夾（GitHub Pages root） -->
+  <!-- One-Stop -->
+  <section id="one-stop">
+    <div class="wrap">
+      <div class="card">
+        <div class="mini-title"><span data-i18n="en" class="show">One-Stop</span><span data-i18n="zh">一站式</span></div>
+        <div data-i18n="en" class="show"><h2>One supplier, one responsibility</h2><p class="lead">Machining + finishing + inspection documentation, all in one.</p></div>
+        <div data-i18n="zh"><h2>一個供應商，一個責任窗口</h2><p class="lead">加工＋表面處理＋量測文件，一次整合。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proof -->
+  <section id="proof">
+    <div class="wrap">
+      <div class="card">
+        <div class="mini-title"><span data-i18n="en" class="show">Proof</span><span data-i18n="zh">實績</span></div>
+
+        <div class="gallery">
+          <!-- ✅ 用你 repo 根目錄的圖片（最穩） -->
+          <div class="shot span-6" data-full="./s__166305810.jpg" data-title="CNC machining">
+            <img alt="CNC machining" src="./s__166305810.jpg">
+            <div class="cap">CNC machining</div>
+          </div>
+          <div class="shot span-6" data-full="./s__166305812.jpg" data-title="Inspection">
+            <img alt="Inspection" src="./s__166305812.jpg">
+            <div class="cap">Inspection</div>
+          </div>
+          <div class="shot span-4" data-full="./s__166305813.jpg" data-title="Workshop">
+            <img alt="Workshop" src="./s__166305813.jpg">
+            <div class="cap">Workshop</div>
+          </div>
+          <div class="shot span-4" data-full="./s__166305815.jpg" data-title="Metal parts">
+            <img alt="Metal parts" src="./s__166305815.jpg">
+            <div class="cap">Metal parts</div>
+          </div>
+          <div class="shot span-4" data-full="./s__166305816.jpg" data-title="Measurement">
+            <img alt="Measurement" src="./s__166305816.jpg">
+            <div class="cap">Measurement</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Machines -->
+  <section id="machines">
+    <div class="wrap">
+      <div class="card">
+        <div class="mini-title"><span data-i18n="en" class="show">Machines</span><span data-i18n="zh">設備</span></div>
+
+        <div data-i18n="en" class="show">
+          <h2>Machine list</h2>
+          <p class="lead">Below image is loaded from your repo: <strong>機台清單.jpg</strong></p>
+        </div>
+        <div data-i18n="zh">
+          <h2>機台清單</h2>
+          <p class="lead">下方圖片直接讀取你 repo 的 <strong>機台清單.jpg</strong></p>
+        </div>
+
+        <div class="img-card" style="margin-top:12px;">
+          <img src="./機台清單.jpg" alt="Machine list">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quality -->
+  <section id="quality">
+    <div class="wrap">
+      <div class="card">
+        <div class="mini-title"><span data-i18n="en" class="show">Quality</span><span data-i18n="zh">品質</span></div>
+        <div data-i18n="en" class="show">
+          <h2>Quality you can audit</h2>
+          <p class="lead">ISO mindset + inspection reports for critical dimensions.</p>
+        </div>
+        <div data-i18n="zh">
+          <h2>可稽核的品質</h2>
+          <p class="lead">以 ISO 思維＋量測報告，降低海外採購風險。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="card">
+        <div class="mini-title"><span data-i18n="en" class="show">Contact</span><span data-i18n="zh">聯絡</span></div>
+
+        <div class="contact-grid">
+          <div>
+            <div class="contact-line"><div class="label">Company</div><div class="value">Jintat Industrial Co., Ltd.</div></div>
+            <div class="contact-line"><div class="label">Email</div><div class="value"><a class="link" href="mailto:info@jintat.com">info@jintat.com</a></div></div>
+            <div class="contact-line"><div class="label">LinkedIn</div><div class="value"><a class="link" href="https://www.linkedin.com/in/haoze-cheng-62794037b" target="_blank" rel="noopener">HaoZe Cheng</a></div></div>
+          </div>
+
+          <div>
+            <a class="btn primary" href="mailto:info@jintat.com" style="width:100%;">Email Us Now</a>
+            <div style="height:10px"></div>
+            <a class="btn" href="#proof" style="width:100%;">View Proof</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap">© <span id="y"></span> Jintat Industrial Co., Ltd.</div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div id="lb" class="lightbox" aria-hidden="true">
+    <div class="lightbox-inner">
+      <img id="lbImg" alt="Preview">
+      <div class="lightbox-bar">
+        <div id="lbTitle">Preview</div>
+        <button id="lbClose" class="xbtn" type="button">Close</button>
+      </div>
+    </div>
+  </div>
 
   <script>
     // Footer year
