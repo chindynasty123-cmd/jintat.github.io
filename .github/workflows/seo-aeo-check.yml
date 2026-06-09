@@ -1,0 +1,30 @@
+name: Daily SEO and AEO Audit
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run SEO and AEO audit
+        run: node scripts/seo-aeo-audit.js
+
+      - name: Upload SEO and AEO report
+        uses: actions/upload-artifact@v4
+        with:
+          name: seo-aeo-report
+          path: seo-aeo-report.md
